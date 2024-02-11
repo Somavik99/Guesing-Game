@@ -7,20 +7,9 @@ const AgainEvent = document.getElementById("Again__event");
 
 let NumberLimit = 20;
 let RandomNumber = Math.floor(Math.random() * NumberLimit);
-// console.log(RandomNumber);
 let TrialValue = 10;
 let NewTrialValue = TrialValue;
 TotalTrial.textContent = NewTrialValue;
-
-AgainEvent.addEventListener("click", function () {
-  CheckButton.disabled = false;
-  RandomNumber = Math.floor(Math.random() * NumberLimit);
-  GuessingNumber.textContent = "?";
-  GuessingNumber.style.background = "rgb(205, 53, 53)";
-  NewTrialValue = 10
-  TotalTrial.textContent = NewTrialValue;
-  // console.log(RandomNumber);
-});
 
 CheckButton.addEventListener("click", function () {
   const NumberInputValue = document.getElementById("Num__input").value;
@@ -36,6 +25,20 @@ CloseEvent.addEventListener("click", function () {
   document.getElementById("Pop__up").style.display = "none";
   AgainEvent.disabled = false;
 });
+
+AgainEvent.addEventListener("click", function () {
+  RestartGame();
+});
+
+function RestartGame() {
+  CheckButton.disabled = false;
+  RandomNumber = Math.floor(Math.random() * NumberLimit);
+  GuessingNumber.textContent = "?";
+  GuessingNumber.style.background = "rgb(205, 53, 53)";
+  NewTrialValue = 10;
+  TotalTrial.textContent = NewTrialValue;
+  // console.log(RandomNumber);
+}
 
 function CheckValueEquality(value) {
   NewTrialValue -= 1;
