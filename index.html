@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Guess The Number</title>
+  </head>
+  <body>
+    <div id="Pop__up">
+      <section style="float:right;cursor:pointer;">X</section>
+      <section style="text-align: center;">
+        <p style="font-size: 50px;">You Lost...!</p>
+        <p style="font-size: 50px;">Try Again...!</p>
+        <p style="font-size: 100px;">😫</p>
+      </section>
+    </div>
+    <header>
+      <div>
+        <button>Again!</button>
+        <p>(Between 1 and 20)</p>
+      </div>
+      <h1>Guess The Number</h1>
+      <div class="Guess" id="guess">?</div>
+    </header>
+    <main>
+      <section class="Value__inputs">
+        <input
+          type="number"
+          name="Number"
+          class="Number__field"
+          id="Num__input"
+        />
+        <button class="Check" id="Check__btn">Check</button>
+      </section>
+      <section class="Value__outputs">
+        <p id="Guess__text">Start Guessing...!</p>
+        <p>Total Trial: <span id="Total__Trial" class="Total"></span></p>
+        <p>
+          Highest Score: <span id="Highest_Score" class="High_score">0</span>
+        </p>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
