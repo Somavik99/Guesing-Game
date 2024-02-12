@@ -13,12 +13,15 @@ console.log(RandomNumber);
 let TrialValue = 10;
 let NewTrialValue = TrialValue;
 TotalTrial.textContent = NewTrialValue;
-let HighScore = 0;
+let HighScore;
 
 // Check button event
 CheckButton.addEventListener("click", function () {
   const NumberInputValue = document.getElementById("Num__input").value;
   CheckValueEquality(NumberInputValue);
+  if (NewTrialValue > HighScore) {
+    document.getElementById("Highest_Score").textContent = HighScore;
+  }
   NewTrialValue === 0
     ? ((CheckButton.disabled = true),
       (AgainEvent.disabled = true),
@@ -29,7 +32,7 @@ CheckButton.addEventListener("click", function () {
 function CheckValueEquality(value) {
   NewTrialValue -= 1;
   TotalTrial.textContent = NewTrialValue;
-  if (value === RandomNumber.toString() ) {
+  if (value === RandomNumber.toString()) {
     GuessingNumber.textContent = RandomNumber;
     GuessingNumber.style.background = "green";
     HighScore = NewTrialValue;
@@ -44,7 +47,7 @@ function CheckValueEquality(value) {
     GuessingNumber.textContent = "?";
     TextOutput.textContent = "Too Low...!";
     TextOutput.style.color = "white";
-  } else if (value==="") {
+  } else if (value === "") {
     GuessingNumber.textContent = "?";
     TextOutput.textContent = "No Number...!";
   }
@@ -63,15 +66,15 @@ AgainEvent.addEventListener("click", function () {
 });
 
 function RestartGame() {
-  TextOutput.textContent = "Start Guessing...!"
-  TextOutput.style.color = "white"
+  TextOutput.textContent = "Start Guessing...!";
+  TextOutput.style.color = "white";
   CheckButton.disabled = false;
   RandomNumber = Math.floor(Math.random() * NumberLimit + 1);
-  console.log(RandomNumber)
+  console.log(RandomNumber);
   GuessingNumber.textContent = "?";
   GuessingNumber.style.background = "rgb(205, 53, 53)";
   NewTrialValue = 10;
   TotalTrial.textContent = NewTrialValue;
-  document.getElementById("Num__input").value = ""
+  document.getElementById("Num__input").value = "";
   // console.log(RandomNumber);
 }
