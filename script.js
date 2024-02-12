@@ -8,10 +8,12 @@ const AgainEvent = document.getElementById("Again__event");
 let NumberLimit = 20;
 //Creating A Random Number
 let RandomNumber = Math.floor(Math.random() * NumberLimit + 1);
-
+console.log(RandomNumber);
+//
 let TrialValue = 10;
 let NewTrialValue = TrialValue;
 TotalTrial.textContent = NewTrialValue;
+let HighScore = 0;
 
 // Check button event
 CheckButton.addEventListener("click", function () {
@@ -27,21 +29,24 @@ CheckButton.addEventListener("click", function () {
 function CheckValueEquality(value) {
   NewTrialValue -= 1;
   TotalTrial.textContent = NewTrialValue;
-  if (value === RandomNumber.toString()) {
+  if (value === RandomNumber.toString() ) {
     GuessingNumber.textContent = RandomNumber;
     GuessingNumber.style.background = "green";
-    document.getElementById("Highest_Score").textContent = NewTrialValue;
+    HighScore = NewTrialValue;
+    document.getElementById("Highest_Score").textContent = HighScore;
     TextOutput.textContent = "Congratulations 👍...";
     TextOutput.style.color = "green";
   } else if (value > RandomNumber) {
     GuessingNumber.textContent = "?";
     TextOutput.textContent = "Too High...!";
+    TextOutput.style.color = "white";
   } else if (value < RandomNumber) {
     GuessingNumber.textContent = "?";
     TextOutput.textContent = "Too Low...!";
-  } else if (value === "") {
+    TextOutput.style.color = "white";
+  } else if (value==="") {
     GuessingNumber.textContent = "?";
-    TextOutput.textContent = "Start Guessing...!";
+    TextOutput.textContent = "No Number...!";
   }
 }
 
@@ -58,11 +63,15 @@ AgainEvent.addEventListener("click", function () {
 });
 
 function RestartGame() {
+  TextOutput.textContent = "Start Guessing...!"
+  TextOutput.style.color = "white"
   CheckButton.disabled = false;
   RandomNumber = Math.floor(Math.random() * NumberLimit + 1);
+  console.log(RandomNumber)
   GuessingNumber.textContent = "?";
   GuessingNumber.style.background = "rgb(205, 53, 53)";
   NewTrialValue = 10;
   TotalTrial.textContent = NewTrialValue;
+  document.getElementById("Num__input").value = ""
   // console.log(RandomNumber);
 }
