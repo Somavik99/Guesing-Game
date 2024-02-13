@@ -13,15 +13,17 @@ console.log(RandomNumber);
 let TrialValue = 10;
 let NewTrialValue = TrialValue;
 TotalTrial.textContent = NewTrialValue;
-let HighScore;
+let HighScore = 0;
 
 // Check button event
 CheckButton.addEventListener("click", function () {
   const NumberInputValue = document.getElementById("Num__input").value;
   CheckValueEquality(NumberInputValue);
-  if (NewTrialValue > HighScore) {
-    document.getElementById("Highest_Score").textContent = HighScore;
+
+  if (NumberInputValue === RandomNumber.toString()) {
+    return (CheckButton.disabled = true);
   }
+
   NewTrialValue === 0
     ? ((CheckButton.disabled = true),
       (AgainEvent.disabled = true),
@@ -30,26 +32,32 @@ CheckButton.addEventListener("click", function () {
 });
 
 function CheckValueEquality(value) {
-  NewTrialValue -= 1;
-  TotalTrial.textContent = NewTrialValue;
   if (value === RandomNumber.toString()) {
     GuessingNumber.textContent = RandomNumber;
     GuessingNumber.style.background = "green";
-    HighScore = NewTrialValue;
-    document.getElementById("Highest_Score").textContent = HighScore;
+    if (NewTrialValue > HighScore) {
+      HighScore = NewTrialValue;
+      document.getElementById("Highest_Score").textContent = HighScore;
+    }
     TextOutput.textContent = "Congratulations 👍...";
     TextOutput.style.color = "green";
-  } else if (value > RandomNumber) {
+  } else if (value > RandomNumber && value !== "") {
+    NewTrialValue -= 1;
+    TotalTrial.textContent = NewTrialValue;
     GuessingNumber.textContent = "?";
     TextOutput.textContent = "Too High...!";
     TextOutput.style.color = "white";
-  } else if (value < RandomNumber) {
+  } else if (value < RandomNumber && value !== "") {
+    NewTrialValue -= 1;
+    TotalTrial.textContent = NewTrialValue;
     GuessingNumber.textContent = "?";
     TextOutput.textContent = "Too Low...!";
     TextOutput.style.color = "white";
   } else if (value === "") {
     GuessingNumber.textContent = "?";
-    TextOutput.textContent = "No Number...!";
+    TextOutput.textContent = "No Number Guessed...!";
+    NewTrialValue = 10;
+    TotalTrial.textContent = NewTrialValue;
   }
 }
 
